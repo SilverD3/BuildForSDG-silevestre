@@ -37,12 +37,12 @@ class Computations
 	function infectionsByRequestedTime($currentlyInfected, $data){
 		//parse timeToElapse into days
 		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
-
-		$infectionsByRequestedTime = intval($currentlyInfected * pow(2, ($timeToElapse / 3)));
-		/*//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
+		$factor = pow(2, ($timeToElapse/3));
+		$infectionsByRequestedTime = round($currentlyInfected * $factor, 0);
+		//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
 		if ($infectionsByRequestedTime > $data->population) {
 			$infectionsByRequestedTime = $data->population;
-		}*/
+		}
 		return $infectionsByRequestedTime;
 	}
 
