@@ -24,16 +24,15 @@ $data = json_encode(array(
 	"totalHospitalBeds" => 1380614
 ));
 
-function covid19ImpactEstimator($data)
+function covid19ImpactEstimator($input_data)
 {
-	$inputData = json_decode($data);
 	$impact = new Impact();
 	$severImpact = new SeverImpact();
   	$outputData = [
-  		'data' => $inputData, 
+  		'data' => json_decode($input_data), 
   		'estimate' =>[
-	  		'impact' => $impact->computeImpact($inputData), 
-	  		'severeImpact' => $severImpact->computeSeverImpact($inputData)
+	  		'impact' => $impact->computeImpact(json_decode($input_data)), 
+	  		'severeImpact' => $severImpact->computeSeverImpact(json_decode($input_data))
 	  	]
   	];
   	return $outputData;
