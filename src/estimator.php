@@ -10,7 +10,7 @@ require_once "objects/severImpact.php";
 require_once "objects/impact.php";
 
 //creating a mock data
-$data = json_decode(json_encode(array(
+$data = json_encode(array(
 	"region" => array(
 		"name" => "Africa",
 		"avgAge" => 20,
@@ -22,17 +22,18 @@ $data = json_decode(json_encode(array(
 	"reportedCases" => 800,
 	"population" => 26000000,
 	"totalHospitalBeds" => 1380614
-)));
+));
 
 function covid19ImpactEstimator($data)
 {
+	$inputData = json_decode($data);
 	$impact = new Impact();
 	$severImpact = new SeverImpact();
   	$outputData = [
-  		'data' => $data, 
+  		'data' => $inputData, 
   		'estimate' =>[
-	  		'impact' => $impact->computeImpact($data), 
-	  		'severeImpact' => $severImpact->computeSeverImpact($data)
+	  		'impact' => $impact->computeImpact($inputData), 
+	  		'severeImpact' => $severImpact->computeSeverImpact($inputData)
 	  	]
   	];
   	return $outputData;
