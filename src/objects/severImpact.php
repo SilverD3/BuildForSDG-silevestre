@@ -10,7 +10,7 @@ class SeverImpact extends Computations
 		$outputData->currentlyInfected = $this->currentlyInfected($input_data, 50);
 		$outputData->infectionsByRequestedTime = $this->infectionsByRequestedTime($outputData->currentlyInfected, $input_data);
 		$outputData->severeCasesByRequestedTime = $this->severeCasesByRequestedTime($outputData->infectionsByRequestedTime);
-		$outputData->hospitalBedsRequestedByTime = $this->hospitalBedsRequestedByTime($input_data->totalHospitalBeds, $outputData->severeCasesByRequestedTime);
+		$outputData->hospitalBedsByRequestedTime = $this->hospitalBedsByRequestedTime($input_data->totalHospitalBeds, $outputData->severeCasesByRequestedTime);
 		$outputData->casesForICUByRequestedTime =$this->casesForICUByRequestedTime($outputData->infectionsByRequestedTime);
 		$outputData->casesForVentilatorsByRequestedTime = $this->casesForVentilatorsByRequestedTime($outputData->infectionsByRequestedTime);
 		$outputData->dollarsInFlight = $this->dollarsInFlight($outputData->infectionsByRequestedTime, $input_data);

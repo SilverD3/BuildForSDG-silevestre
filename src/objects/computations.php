@@ -50,7 +50,7 @@ class Computations
 		return round((15 * $infectionsByRequestedTime / 100), 2);
 	}
 
-	function hospitalBedsRequestedByTime($totalHospitalBeds, $severeCasesByRequestedTime){
+	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
 		return round(((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime), 2);
 	}
 
