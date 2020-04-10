@@ -7,7 +7,7 @@ function covid19ImpactEstimator($input_data)
 {
 	$impact = new Impact();
 	$severImpact = new SeverImpact();
-  	$outputData = [
+  	$outputData = (object)[
   		'data' => json_decode(json_encode($input_data)), 
   		'estimate' =>[
 	  		'impact' => $impact->computeImpact(json_decode(json_encode($input_data))), 
