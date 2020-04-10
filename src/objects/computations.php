@@ -45,5 +45,25 @@ class Computations
 		}*/
 		return $infectionsByRequestedTime;
 	}
+
+	function severeCasesByRequestedTime($infectionsByRequestedTime){
+		return round((15 * $infectionsByRequestedTime / 100), 2);
+	}
+
+	function hospitalBedsRequestedByTime($totalHospitalBeds, $severeCasesByRequestedTime){
+		return round(((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime), 2);
+	}
+
+	function casesForICUByRequestedTime($infectionsByRequestedTime){
+		return round((5 * $infectionsByRequestedTime / 100), 2);
+	}
+
+	function casesForVentilatorsByRequestedTime($infectionsByRequestedTime){
+		return round((2 * $infectionsByRequestedTime / 100), 2);
+	}
+
+	function dollarsInFlight($infectionsByRequestedTime, $data){
+		return ($infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $this->normalizeDuration($data->periodType, $data->timeToElapse));
+	}
 	
 }
