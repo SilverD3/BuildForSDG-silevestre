@@ -18,5 +18,4 @@ function covid19ImpactEstimator($input_data)
 }
 /*$data = "{\"region\": {\"name\" : \"Africa\",\"avgAge\" : 20.35,\"avgDailyIncomeInUSD\" : 3.21,\"avgDailyIncomePopulation\" : 1.5},\"periodType\" : \"months\",\"timeToElapse\" : 1,\"reportedCases\" : 978,\"population\" : 98765342,\"totalHospitalBeds\" : 1380614}";
 
-print_r(covid19ImpactEstimator(json_decode($data)));
-*/
+print_r(covid19ImpactEstimator(json_decode($data)));*/
