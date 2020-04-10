@@ -15,6 +15,6 @@ class SeverImpact extends Computations
 		$outputData->casesForVentilatorsByRequestedTime = $this->casesForVentilatorsByRequestedTime($outputData->infectionsByRequestedTime);
 		$outputData->dollarsInFlight = $this->dollarsInFlight($outputData->infectionsByRequestedTime, $input_data);
 
-		return $outputData;
+		return (array)$outputData;
 	}
 }
