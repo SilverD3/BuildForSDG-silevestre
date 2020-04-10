@@ -30,8 +30,8 @@ class Computations
 		}
 	}
 	
-	function currentlyInfected($data, $infections_estimation){
-		return $data->reportedCases * $infections_estimation;
+	function currentlyInfected($reportedCases, $infections_estimation){
+		return $reportedCases * $infections_estimation;
 	}
 
 	function infectionsByRequestedTime($currentlyInfected, $data){
@@ -39,10 +39,10 @@ class Computations
 		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
 		$factor = pow(2, ($timeToElapse/3));
 		$infectionsByRequestedTime = round($currentlyInfected * $factor, 0);
-		//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
+		/*//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
 		if ($infectionsByRequestedTime > $data->population) {
 			$infectionsByRequestedTime = $data->population;
-		}
+		}*/
 		return $infectionsByRequestedTime;
 	}
 
