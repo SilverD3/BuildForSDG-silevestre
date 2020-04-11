@@ -38,32 +38,34 @@ class Computations
 		//parse timeToElapse into days
 		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
 		$factor = pow(2, ($timeToElapse/3));
-		$infectionsByRequestedTime = (int)($currentlyInfected * $factor);
+		$infectionsByRequestedTime = $currentlyInfected * $factor;
 		/*//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
 		if ($infectionsByRequestedTime > $data->population) {
 			$infectionsByRequestedTime = $data->population;
 		}*/
-		return $infectionsByRequestedTime;
+		return (int)$infectionsByRequestedTime;
 	}
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
-		return round((15 * $infectionsByRequestedTime / 100), 2);
+		return (int)(15 * $infectionsByRequestedTime / 100);
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		return round(((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime), 2);
+		return (int)((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime);
 	}
 
 	function casesForICUByRequestedTime($infectionsByRequestedTime){
-		return round((5 * $infectionsByRequestedTime / 100), 2);
+		return (int)(5 * $infectionsByRequestedTime / 100);
 	}
 
 	function casesForVentilatorsByRequestedTime($infectionsByRequestedTime){
-		return round((2 * $infectionsByRequestedTime / 100), 2);
+		return (int)(2 * $infectionsByRequestedTime / 100);
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
-		return ($infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $this->normalizeDuration($data->periodType, $data->timeToElapse));
+		$dollarsInFlight = $infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $this->normalizeDuration($data->periodType, $data->timeToElapse);
+
+		return (int)$dollarsInFlight;
 	}
 	
 }
