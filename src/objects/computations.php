@@ -34,7 +34,7 @@ class Computations
 	}
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
-		$severeCasesByRequestedTime = (15 * $infectionsByRequestedTime) / 100;
+		$severeCasesByRequestedTime = 15 * ($infectionsByRequestedTime / 100);
 		return round($severeCasesByRequestedTime, 0);
 	}
 
