@@ -8,22 +8,15 @@ class Computations
 {
 	function normalizeDuration($periodType, $timeToElapse){
 		switch ($periodType) {
-			case 'minutes':
-				return $timeToElapse / 1440; //1440 is number of minutes in an hour
-				break;
-			case 'hours':
-				return $timeToElapse / 24; //24 is number of hours in an hour
-				break;
 			case 'days':
 				return $timeToElapse;
 				break;
 			case 'weeks':
-				return $timeToElapse * 7; //7 is number of days in weeks
+				return 7 * $timeToElapse; //7 is number of days in a week
 				break;
 			case 'months':
-				return $timeToElapse * 30; // 30 is number of days in month
+				return 30 * $timeToElapse; // 30 is number of days in a month
 				break;
-			
 			default:
 				return $timeToElapse;
 				break;
