@@ -37,8 +37,8 @@ class Computations
 	function infectionsByRequestedTime($currentlyInfected, $data){
 		//parse timeToElapse into days
 		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
-		$factor = pow(2, ($timeToElapse/3));
-		$infectionsByRequestedTime = $currentlyInfected * $factor;
+		$factor = round($timeToElapse/3, 0);
+		$infectionsByRequestedTime = $currentlyInfected * pow(2, $factor);
 		/*//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
 		if ($infectionsByRequestedTime > $data->population) {
 			$infectionsByRequestedTime = $data->population;
@@ -63,7 +63,8 @@ class Computations
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
-		$dollarsInFlight = $infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $this->normalizeDuration($data->periodType, $data->timeToElapse);
+		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
+		$dollarsInFlight = $infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $timeToElapse;
 
 		return round($dollarsInFlight, 0);
 	}
