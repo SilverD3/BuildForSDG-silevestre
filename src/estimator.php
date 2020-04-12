@@ -15,8 +15,7 @@ function covid19ImpactEstimator($input_data)
   		'severeImpact' => $severImpact->computeSeverImpact(json_decode(json_encode($input_data)))
   	];
   	return json_decode(json_encode($outputData), true);
-}
-/*$data = "{\"region\": {\"name\" : \"Africa\",\"avgAge\" : 20.35,\"avgDailyIncomeInUSD\" : 3.21,\"avgDailyIncomePopulation\" : 1.5},\"periodType\" : \"weeks\",\"timeToElapse\" : 7,\"reportedCases\" : 978,\"population\" : 98765342,\"totalHospitalBeds\" : 1380614}";
+}/*
+$data = "{\"region\": {\"name\" : \"Africa\",\"avgAge\" : 20.35,\"avgDailyIncomeInUSD\" : 3.21,\"avgDailyIncomePopulation\" : 1.5},\"periodType\" : \"months\",\"timeToElapse\" : 1.654,\"reportedCases\" : 978,\"population\" : 98765342,\"totalHospitalBeds\" : 1380614}";
 
-print_r(covid19ImpactEstimator(json_decode($data)));
-*/
+print_r(covid19ImpactEstimator(json_decode($data)));*/
