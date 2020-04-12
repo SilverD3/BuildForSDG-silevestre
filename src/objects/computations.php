@@ -39,7 +39,7 @@ class Computations
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		$hospitalBedsBRT = (35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime;
+		$hospitalBedsBRT = ((35 * $totalHospitalBeds)/ 100) - $severeCasesByRequestedTime;
 		return round($hospitalBedsBRT, 0);
 	}
 
