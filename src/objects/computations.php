@@ -37,36 +37,35 @@ class Computations
 	function infectionsByRequestedTime($currentlyInfected, $data){
 		//parse timeToElapse into days
 		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
-		$factor = round(($timeToElapse/3), 0);
+		$factor = (int)($timeToElapse/3);
 		$infectionsByRequestedTime = $currentlyInfected * pow(2, $factor);
 		/*//set infectionsByRequestedTime equals to poputlation if it is up than region pouplation
 		if ($infectionsByRequestedTime > $data->population) {
 			$infectionsByRequestedTime = $data->population;
 		}*/
-		return round($infectionsByRequestedTime, 0);
+		return (int)$infectionsByRequestedTime;
 	}
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
-		return round((15 * $infectionsByRequestedTime / 100), 0);
+		return (int)(15 * $infectionsByRequestedTime / 100);
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		return round(((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime), 0);
+		return (int)((35 * $totalHospitalBeds / 100) - $severeCasesByRequestedTime);
 	}
 
 	function casesForICUByRequestedTime($infectionsByRequestedTime){
-		return round((5 * $infectionsByRequestedTime / 100), 0);
+		return (int)(5 * $infectionsByRequestedTime / 100);
 	}
 
 	function casesForVentilatorsByRequestedTime($infectionsByRequestedTime){
-		return round((2 * $infectionsByRequestedTime / 100), 0);
+		return (int)(2 * $infectionsByRequestedTime / 100);
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
-		$timeToElapse = $this->normalizeDuration($data->periodType, $data->timeToElapse);
-		$dollarsInFlight = $infectionsByRequestedTime * $data->region->avgDailyIncomePopulation * $data->region->avgDailyIncomeInUSD * $timeToElapse;
+		$dollarsInFlight = $infectionsByRequestedTime * $data->region->avgDailyIncomeInUSD * $data->region->avgDailyIncomePopulation * $this->normalizeDuration($data->periodType, $data->timeToElapse);
 
-		return round($dollarsInFlight, 0);
+		return (int)$dollarsInFlight;
 	}
 	
 }
