@@ -34,12 +34,12 @@ class Computations
 	}
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
-		$severeCasesByRequestedTime = 15 * ($infectionsByRequestedTime / 100);
+		$severeCasesByRequestedTime = 15 * $infectionsByRequestedTime / 100;
 		return round($severeCasesByRequestedTime, 0);
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		$hospitalBedsBRT = ((35 * $totalHospitalBeds)/ 100) - $severeCasesByRequestedTime;
+		$hospitalBedsBRT = (35 * $totalHospitalBeds/ 100) - $severeCasesByRequestedTime;
 		return round($hospitalBedsBRT, 0);
 	}
 
