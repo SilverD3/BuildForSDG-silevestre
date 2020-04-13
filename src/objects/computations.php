@@ -35,20 +35,20 @@ class Computations
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
 		$severeCasesByRequestedTime = $infectionsByRequestedTime * 0.15;
-		return round($severeCasesByRequestedTime, 0);
+		return (int)number_format($severeCasesByRequestedTime, 0, '.', '');
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
 		$hospitalBedsBRT = ($totalHospitalBeds * 0.35) - $severeCasesByRequestedTime;
-		return round($hospitalBedsBRT, 0);
+		return (int)number_format($hospitalBedsBRT, 0, '.', '');
 	}
 
 	function casesForICUByRequestedTime($infectionsByRequestedTime){
-		return round($infectionsByRequestedTime * 0.05, 0);
+		return (int)number_format($infectionsByRequestedTime * 0.05, 0, '.', '');
 	}
 
 	function casesForVentilatorsByRequestedTime($infectionsByRequestedTime){
-		return round($infectionsByRequestedTime * 0.02, 0);
+		return (int)number_format($infectionsByRequestedTime * 0.02, 0, '.', '');
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
