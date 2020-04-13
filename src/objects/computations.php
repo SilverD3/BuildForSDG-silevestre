@@ -25,7 +25,7 @@ class Computations
 	}
 
 	function infectionsByRequestedTime($currentlyInfected, $data){
-		$factor = round(($this->normalizeDuration($data->periodType, $data->timeToElapse)/3), 0);
+		$factor = number_format(($this->normalizeDuration($data->periodType, $data->timeToElapse)/3), 0, '.', '');
 		$infectionsByRequestedTime = $currentlyInfected * pow(2, $factor);
 		return (int)number_format($infectionsByRequestedTime, 0, '.', '');
 	}
