@@ -36,7 +36,7 @@ class Computations
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		$hospitalBedsBRT = (int)number_format(($totalHospitalBeds * 0.35), 0, '.', '') - $severeCasesByRequestedTime;
+		$hospitalBedsBRT = number_format($totalHospitalBeds * 0.35, 0, '.', '') - $severeCasesByRequestedTime;
 		return (int)number_format($hospitalBedsBRT, 0, '.', '');
 	}
 
@@ -49,7 +49,7 @@ class Computations
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
-		$dollarsInFlight = $infectionsByRequestedTime * ($data->region->avgDailyIncomeInUSD / $this->normalizeDuration($data->periodType, $data->timeToElapse))* $data->region->avgDailyIncomePopulation;
+		$dollarsInFlight = $infectionsByRequestedTime * number_format($data->region->avgDailyIncomeInUSD / $this->normalizeDuration($data->periodType, $data->timeToElapse), 0, '.', '')* $data->region->avgDailyIncomePopulation;
 
 		return (int)number_format($dollarsInFlight, 0, '.', '');
 	}
