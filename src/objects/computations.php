@@ -49,7 +49,7 @@ class Computations
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
-		$dollarsInFlight = (int)number_format((float)(($infectionsByRequestedTime*$data->region->avgDailyIncomePopulation)*$data->region->avgDailyIncomeInUSD/$days), 2, '.', '');
+		$dollarsInFlight = (int)number_format((float)(($infectionsByRequestedTime*$data->region->avgDailyIncomePopulation)*$data->region->avgDailyIncomeInUSD/$this->normalizeDuration($data->periodType, $data->timeToElapse)), 2, '.', '');
 
 		return $dollarsInFlight;
 	}
