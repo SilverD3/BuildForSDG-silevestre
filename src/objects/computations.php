@@ -7,20 +7,15 @@
 class Computations
 {
 	function normalizeDuration($periodType, $timeToElapse){
-		switch ($periodType) {
-			case 'days':
-				return $timeToElapse;
-				break;
-			case 'weeks':
-				return (7 * $timeToElapse); //7 is number of days in a week
-				break;
-			case 'months':
-				return (30 * $timeToElapse); // 30 is number of days in a month
-				break;
-			default:
-				return $timeToElapse;
-				break;
+		if ($periodType == "days") {
+			$days = $timeToElapse;
+		}else if($periodType == "weeks"){
+			$days = $timeToElapse * 7;
+		}else if($periodType == "months"){
+			$days = $timeToElapse * 30;
 		}
+
+		return $days;
 	}
 	
 	function currentlyInfected($reportedCases, $infections_estimation){
@@ -30,7 +25,7 @@ class Computations
 	function infectionsByRequestedTime($currentlyInfected, $data){
 		$factor = round(($this->normalizeDuration($data->periodType, $data->timeToElapse)/3), 0);
 		$infectionsByRequestedTime = $currentlyInfected * pow(2, $factor);
-		return number_format($infectionsByRequestedTime, 0, '.', '');
+		return (int)number_format($infectionsByRequestedTime, 0, '.', '');
 	}
 
 	function severeCasesByRequestedTime($infectionsByRequestedTime){
@@ -54,7 +49,7 @@ class Computations
 	function dollarsInFlight($infectionsByRequestedTime, $data){
 		$dollarsInFlight = $infectionsByRequestedTime * ($data->region->avgDailyIncomeInUSD / $this->normalizeDuration($data->periodType, $data->timeToElapse))* $data->region->avgDailyIncomePopulation;
 
-		return round($dollarsInFlight, 0);
+		(int)return number_format($dollarsInFlight, 0, '.', '');
 	}
 	
 }
