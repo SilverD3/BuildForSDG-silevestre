@@ -9,9 +9,11 @@ class Computations
 	function normalizeDuration($periodType, $timeToElapse){
 		if ($periodType == "days") {
 			$days = $timeToElapse;
-		}else if($periodType == "weeks"){
+		}
+		if($periodType == "weeks"){
 			$days = $timeToElapse * 7;
-		}else if($periodType == "months"){
+		}
+		if($periodType == "months"){
 			$days = $timeToElapse * 30;
 		}
 
@@ -49,7 +51,7 @@ class Computations
 	function dollarsInFlight($infectionsByRequestedTime, $data){
 		$dollarsInFlight = $infectionsByRequestedTime * ($data->region->avgDailyIncomeInUSD / $this->normalizeDuration($data->periodType, $data->timeToElapse))* $data->region->avgDailyIncomePopulation;
 
-		(int)return number_format($dollarsInFlight, 0, '.', '');
+		return (int)number_format($dollarsInFlight, 0, '.', '');
 	}
 	
 }
