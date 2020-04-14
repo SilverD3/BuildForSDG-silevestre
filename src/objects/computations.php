@@ -49,7 +49,7 @@ class Computations
 	}
 
 	function casesForVentilatorsByRequestedTime($infectionsByRequestedTime){
-		return (int)number_format($infectionsByRequestedTime * 0.02, 0, '.', '');
+		return (int)number_format((int)($infectionsByRequestedTime*0.02), 0, '.', '');
 	}
 
 	function dollarsInFlight($infectionsByRequestedTime, $data){
