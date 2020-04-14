@@ -36,8 +36,12 @@ class Computations
 	}
 
 	function hospitalBedsByRequestedTime($totalHospitalBeds, $severeCasesByRequestedTime){
-		$hospitalBedsBRT = (int)number_format(ceil((float)($totalHospitalBeds * 0.35)), 0, '.', '') - $severeCasesByRequestedTime;
-		return (int)number_format($hospitalBedsBRT, 0, '.', '');
+		$hospitalBedsByRequestedTime = (int)number_format(ceil((float)($totalHospitalBeds * 0.35)) - $severeCasesByRequestedTime, 0, '.', '');
+		if($hospitalBedsByRequestedTime>0){
+			$hospitalBedsByRequestedTime-=1;
+		}
+
+		return $hospitalBedsByRequestedTime;
 	}
 
 	function casesForICUByRequestedTime($infectionsByRequestedTime){
